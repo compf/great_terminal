@@ -14,11 +14,12 @@ class TerminalOutputBuilder:
             cmd_it = iter(self.stdout.readlines())
             while True:
                 line = next(cmd_it)
-                print(line)
+                print(line,"cool")
                 if "  " in line:
                     print("tab")
                     self.parse_table(line, cmd_it)
                 else:
+                    print("simple")
                     self.parse_simple(line, cmd_it)
 
         except StopIteration:
