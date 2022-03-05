@@ -1,26 +1,1042 @@
 [
-    {
-        "name": "dir",
-        "views": [
-            {
-                "id": "default",
-                "type": "table",
-                "default":true,
-                
-        "args": [
-            {
-                "forms": null,
-                "id": "path",
-                "required": true
-            }
-           
-        ]
-    }
-
-
+  {
+    "name": "dir",
+    "views": [
+      {
+        "id": "default",
+        "type": "table",
+        "default": true
+      }
+    ],
+    "args": [
+      {
+        "forms": null,
+        "id": "path",
+        "required": true
+      }
+    ]
+  },
+  {
+    "name": "ls",
+    "args": [
+      {
+        "id": "-a",
+        "forms": [
+          "-a",
+          " --all"
         ],
-        "args":[
-            
-        ]
-    }
+        "type": "flag",
+        "help": "do not ignore entries starting with ."
+      },
+      {
+        "id": "-A",
+        "forms": [
+          "-A",
+          " --almost-all"
+        ],
+        "type": "flag",
+        "help": " do not list implied . and .."
+      },
+      {
+        "id": "--author",
+        "forms": [
+          "--author"
+        ],
+        "type": "flag",
+        "help": " with -l, print the author of each file"
+      },
+      {
+        "id": "-b",
+        "forms": [
+          "-b",
+          " --escape"
+        ],
+        "type": "flag",
+        "help": " print C-style escapes for nongraphic characters"
+      },
+      {
+        "id": "--block-size",
+        "forms": [
+          "--block-size"
+        ],
+        "type": "string",
+        "help": "with -l, scale sizes by SIZE when printing them;\ne.g., '--block-size=M'; see SIZE format below"
+      },
+      {
+        "id": "-B",
+        "forms": [
+          "-B",
+          " --ignore-backups"
+        ],
+        "type": "flag",
+        "help": " do not list implied entries ending with ~"
+      },
+      {
+        "id": "-c",
+        "forms": [
+          "-c"
+        ],
+        "type": "flag",
+        "help": " with -lt: sort by, and show, ctime (time of last\nmodification of file status information);\nwith -l: show ctime and sort by name;\notherwise: sort by ctime, newest first"
+      },
+      {
+        "id": "-C",
+        "forms": [
+          "-C"
+        ],
+        "type": "flag",
+        "help": " list entries by columns"
+      },
+      {
+        "id": "--color[",
+        "forms": [
+          "--color["
+        ],
+        "type": "string",
+        "help": " colorize the output; WHEN can be 'always' (default\nif omitted), 'auto', or 'never'; more info below"
+      },
+      {
+        "id": "-d",
+        "forms": [
+          "-d",
+          " --directory"
+        ],
+        "type": "flag",
+        "help": "list directories themselves, not their contents"
+      },
+      {
+        "id": "-D",
+        "forms": [
+          "-D",
+          " --dired"
+        ],
+        "type": "flag",
+        "help": "generate output designed for Emacs' dired mode"
+      },
+      {
+        "id": "-f",
+        "forms": [
+          "-f"
+        ],
+        "type": "flag",
+        "help": " do not sort, enable -aU, disable -ls --color"
+      },
+      {
+        "id": "-F",
+        "forms": [
+          "-F",
+          " --classify"
+        ],
+        "type": "flag",
+        "help": " append indicator (one of */=>@|) to entries"
+      },
+      {
+        "id": "--file-type",
+        "forms": [
+          "--file-type"
+        ],
+        "type": "flag",
+        "help": "likewise, except do not append '*'"
+      },
+      {
+        "id": "--format",
+        "forms": [
+          "--format"
+        ],
+        "type": "string",
+        "help": "across -x, commas -m, horizontal -x, long -l,\nsingle-column -1, verbose -l, vertical -C"
+      },
+      {
+        "id": "--full-time",
+        "forms": [
+          "--full-time"
+        ],
+        "type": "flag",
+        "help": "like -l --time-style=full-iso"
+      },
+      {
+        "id": "-g",
+        "forms": [
+          "-g"
+        ],
+        "type": "flag",
+        "help": " like -l, but do not list owner"
+      },
+      {
+        "id": "--group-directories-first",
+        "forms": [
+          "--group-directories-first"
+        ],
+        "type": "flag",
+        "help": "\ngroup directories before files;\ncan be augmented with a --sort option, but any\nuse of --sort=none (-U) disables grouping"
+      },
+      {
+        "id": "-G",
+        "forms": [
+          "-G",
+          " --no-group"
+        ],
+        "type": "flag",
+        "help": " in a long listing, don't print group names"
+      },
+      {
+        "id": "-h",
+        "forms": [
+          "-h",
+          " --human-readable"
+        ],
+        "type": "flag",
+        "help": " with -l and -s, print sizes like 1K 234M 2G etc."
+      },
+      {
+        "id": "--si",
+        "forms": [
+          "--si"
+        ],
+        "type": "flag",
+        "help": " likewise, but use powers of 1000 not 1024"
+      },
+      {
+        "id": "-H",
+        "forms": [
+          "-H",
+          " --dereference-command-line"
+        ],
+        "type": "flag",
+        "help": "\nfollow symbolic links listed on the command line"
+      },
+      {
+        "id": "--dereference-command-line-symlink-to-dir",
+        "forms": [
+          "--dereference-command-line-symlink-to-dir"
+        ],
+        "type": "flag",
+        "help": "\nfollow each command line symbolic link\nthat points to a directory"
+      },
+      {
+        "id": "--hide",
+        "forms": [
+          "--hide"
+        ],
+        "type": "string",
+        "help": " do not list implied entries matching shell PATTERN\n(overridden by -a or -A)"
+      },
+      {
+        "id": "--hyperlink[",
+        "forms": [
+          "--hyperlink["
+        ],
+        "type": "string",
+        "help": " hyperlink file names; WHEN can be 'always'\n(default if omitted), 'auto', or 'never'"
+      },
+      {
+        "id": "--indicator-style",
+        "forms": [
+          "--indicator-style"
+        ],
+        "type": "string",
+        "help": "append indicator with style WORD to entry names:\nnone (default), slash (-p),\nfile-type (--file-type), classify (-F)"
+      },
+      {
+        "id": "-i",
+        "forms": [
+          "-i",
+          " --inode"
+        ],
+        "type": "flag",
+        "help": "print the index number of each file"
+      },
+      {
+        "id": "-I",
+        "forms": [
+          "-I",
+          " --ignore"
+        ],
+        "type": "string",
+        "help": " do not list implied entries matching shell PATTERN"
+      },
+      {
+        "id": "-k",
+        "forms": [
+          "-k",
+          " --kibibytes"
+        ],
+        "type": "flag",
+        "help": "default to 1024-byte blocks for disk usage;\nused only with -s and per directory totals"
+      },
+      {
+        "id": "-l",
+        "forms": [
+          "-l"
+        ],
+        "type": "flag",
+        "help": " use a long listing format"
+      },
+      {
+        "id": "-L",
+        "forms": [
+          "-L",
+          " --dereference"
+        ],
+        "type": "flag",
+        "help": "when showing file information for a symbolic\nlink, show information for the file the link\nreferences rather than for the link itself"
+      },
+      {
+        "id": "-m",
+        "forms": [
+          "-m"
+        ],
+        "type": "flag",
+        "help": " fill width with a comma separated list of entries"
+      },
+      {
+        "id": "-n",
+        "forms": [
+          "-n",
+          " --numeric-uid-gid"
+        ],
+        "type": "flag",
+        "help": "like -l, but list numeric user and group IDs"
+      },
+      {
+        "id": "-N",
+        "forms": [
+          "-N",
+          " --literal"
+        ],
+        "type": "flag",
+        "help": "print entry names without quoting"
+      },
+      {
+        "id": "-o",
+        "forms": [
+          "-o"
+        ],
+        "type": "flag",
+        "help": " like -l, but do not list group information"
+      },
+      {
+        "id": "-p",
+        "forms": [
+          "-p",
+          " --indicator-style"
+        ],
+        "type": "string",
+        "help": "\nappend / indicator to directories"
+      },
+      {
+        "id": "-q",
+        "forms": [
+          "-q",
+          " --hide-control-chars"
+        ],
+        "type": "flag",
+        "help": " print ? instead of nongraphic characters"
+      },
+      {
+        "id": "--show-control-chars",
+        "forms": [
+          "--show-control-chars"
+        ],
+        "type": "flag",
+        "help": " show nongraphic characters as-is (the default,\nunless program is 'ls' and output is a terminal)"
+      },
+      {
+        "id": "-Q",
+        "forms": [
+          "-Q",
+          " --quote-name"
+        ],
+        "type": "flag",
+        "help": " enclose entry names in double quotes"
+      },
+      {
+        "id": "--quoting-style",
+        "forms": [
+          "--quoting-style"
+        ],
+        "type": "string",
+        "help": " use quoting style WORD for entry names:\nliteral, locale, shell, shell-always,\nshell-escape, shell-escape-always, c, escape\n(overrides QUOTING_STYLE environment variable)"
+      },
+      {
+        "id": "-r",
+        "forms": [
+          "-r",
+          " --reverse"
+        ],
+        "type": "flag",
+        "help": "reverse order while sorting"
+      },
+      {
+        "id": "-R",
+        "forms": [
+          "-R",
+          " --recursive"
+        ],
+        "type": "flag",
+        "help": "list subdirectories recursively"
+      },
+      {
+        "id": "-s",
+        "forms": [
+          "-s",
+          " --size"
+        ],
+        "type": "flag",
+        "help": " print the allocated size of each file, in blocks"
+      },
+      {
+        "id": "-S",
+        "forms": [
+          "-S"
+        ],
+        "type": "flag",
+        "help": " sort by file size, largest first"
+      },
+      {
+        "id": "--sort",
+        "forms": [
+          "--sort"
+        ],
+        "type": "string",
+        "help": "sort by WORD instead of name: none (-U), size (-S),\ntime (-t), version (-v), extension (-X)"
+      },
+      {
+        "id": "--time",
+        "forms": [
+          "--time"
+        ],
+        "type": "string",
+        "help": "with -l, show time as WORD instead of default\nmodification time: atime or access or use (-u);\nctime or status (-c); also use specified time\nas sort key if --sort=time (newest first)"
+      },
+      {
+        "id": "--time-style",
+        "forms": [
+          "--time-style"
+        ],
+        "type": "string",
+        "help": "time/date format with -l; see TIME_STYLE below"
+      },
+      {
+        "id": "-t",
+        "forms": [
+          "-t"
+        ],
+        "type": "flag",
+        "help": " sort by modification time, newest first"
+      },
+      {
+        "id": "-T",
+        "forms": [
+          "-T",
+          " --tabsize"
+        ],
+        "type": "string",
+        "help": " assume tab stops at each COLS instead of 8"
+      },
+      {
+        "id": "-u",
+        "forms": [
+          "-u"
+        ],
+        "type": "flag",
+        "help": " with -lt: sort by, and show, access time;\nwith -l: show access time and sort by name;\notherwise: sort by access time, newest first"
+      },
+      {
+        "id": "-U",
+        "forms": [
+          "-U"
+        ],
+        "type": "flag",
+        "help": " do not sort; list entries in directory order"
+      },
+      {
+        "id": "-v",
+        "forms": [
+          "-v"
+        ],
+        "type": "flag",
+        "help": " natural sort of (version) numbers within text"
+      },
+      {
+        "id": "-w",
+        "forms": [
+          "-w",
+          " --width"
+        ],
+        "type": "string",
+        "help": " set output width to COLS."
+      },
+      {
+        "id": "-x",
+        "forms": [
+          "-x"
+        ],
+        "type": "flag",
+        "help": " list entries by lines instead of by columns"
+      },
+      {
+        "id": "-X",
+        "forms": [
+          "-X"
+        ],
+        "type": "flag",
+        "help": " sort alphabetically by entry extension"
+      },
+      {
+        "id": "-Z",
+        "forms": [
+          "-Z",
+          " --context"
+        ],
+        "type": "flag",
+        "help": "print any security context of each file"
+      },
+      {
+        "id": "-1",
+        "forms": [
+          "-1"
+        ],
+        "type": "flag",
+        "help": " list one file per line."
+      },
+      {
+        "id": "--help",
+        "forms": [
+          "--help"
+        ],
+        "type": "flag",
+        "help": " display this help and exit"
+      },
+      {
+        "id": "--version",
+        "forms": [
+          "--version"
+        ],
+        "type": "flag",
+        "help": "output version information and exit\nThe SIZE argument is an integer and optional unit (example: 10K is 10*1024).\nUnits are K,M,G,T,P,E,Z,Y (powers of 1024) or KB,MB,... (powers of 1000).\nThe TIME_STYLE argument can be full-iso, long-iso, iso, locale, or +FORMAT.\nFORMAT is interpreted like in date(1).  If FORMAT is FORMAT1<newline>FORMAT2,\nthen FORMAT1 applies to non-recent files and FORMAT2 to recent files.\nTIME_STYLE prefixed with 'posix-' takes effect only outside the POSIX locale.\nAlso the TIME_STYLE environment variable sets the default style to use.\nUsing color to distinguish file types is disabled both by default and\nwith --color=never.  With --color=auto, ls emits color codes only when\nstandard output is connected to a terminal.  The LS_COLORS environment\nvariable can change the settings.  Use the dircolors command to set it.\nExit status:\n0  if OK,\n1  if minor problems (e.g., cannot access subdirectory),\n2  if serious trouble (e.g., cannot access command-line argument).\nGNU coreutils online help: <https://www.gnu.org/software/coreutils/>\nFull documentation at: <https://www.gnu.org/software/coreutils/ls>\nor available locally via: info '(coreutils) ls invocation'"
+      }
+    ]
+  },
+  {
+    "name": "mv",
+    "args": [
+      {
+        "id": "--backup[",
+        "forms": [
+          "--backup["
+        ],
+        "type": "string",
+        "help": " make a backup of each existing destination file"
+      },
+      {
+        "id": "-b",
+        "forms": [
+          "-b"
+        ],
+        "type": "flag",
+        "help": " like --backup but does not accept an argument"
+      },
+      {
+        "id": "-f",
+        "forms": [
+          "-f",
+          " --force"
+        ],
+        "type": "flag",
+        "help": "do not prompt before overwriting"
+      },
+      {
+        "id": "-i",
+        "forms": [
+          "-i",
+          " --interactive"
+        ],
+        "type": "flag",
+        "help": "prompt before overwrite"
+      },
+      {
+        "id": "-n",
+        "forms": [
+          "-n",
+          " --no-clobber"
+        ],
+        "type": "flag",
+        "help": " do not overwrite an existing file\nIf you specify more than one of -i, -f, -n, only the final one takes effect."
+      },
+      {
+        "id": "--strip-trailing-slashes",
+        "forms": [
+          "--strip-trailing-slashes"
+        ],
+        "type": "flag",
+        "help": "remove any trailing slashes from each SOURCE\nargument"
+      },
+      {
+        "id": "-S",
+        "forms": [
+          "-S",
+          " --suffix"
+        ],
+        "type": "string",
+        "help": "override the usual backup suffix"
+      },
+      {
+        "id": "-t",
+        "forms": [
+          "-t",
+          " --target-directory"
+        ],
+        "type": "string",
+        "help": "move all SOURCE arguments into DIRECTORY"
+      },
+      {
+        "id": "-T",
+        "forms": [
+          "-T",
+          " --no-target-directory"
+        ],
+        "type": "flag",
+        "help": "treat DEST as a normal file"
+      },
+      {
+        "id": "-u",
+        "forms": [
+          "-u",
+          " --update"
+        ],
+        "type": "flag",
+        "help": " move only when the SOURCE file is newer\nthan the destination file or when the\ndestination file is missing"
+      },
+      {
+        "id": "-v",
+        "forms": [
+          "-v",
+          " --verbose"
+        ],
+        "type": "flag",
+        "help": "explain what is being done"
+      },
+      {
+        "id": "-Z",
+        "forms": [
+          "-Z",
+          " --context"
+        ],
+        "type": "flag",
+        "help": "set SELinux security context of destination\nfile to default type"
+      },
+      {
+        "id": "--help",
+        "forms": [
+          "--help"
+        ],
+        "type": "flag",
+        "help": " display this help and exit"
+      },
+      {
+        "id": "--version",
+        "forms": [
+          "--version"
+        ],
+        "type": "flag",
+        "help": "output version information and exit\nThe backup suffix is '~', unless set with --suffix or SIMPLE_BACKUP_SUFFIX.\nThe version control method may be selected via the --backup option or through\nthe VERSION_CONTROL environment variable.  Here are the values:\nnone, off       never make backups (even if --backup is given)\nnumbered, t     make numbered backups\nexisting, nil   numbered if numbered backups exist, simple otherwise\nsimple, never   always make simple backups\nGNU coreutils online help: <https://www.gnu.org/software/coreutils/>\nFull documentation at: <https://www.gnu.org/software/coreutils/mv>\nor available locally via: info '(coreutils) mv invocation'"
+      }
+    ]
+  },
+  {
+    "name": "cp",
+    "args": [
+      {
+        "id": "-a",
+        "forms": [
+          "-a",
+          " --archive"
+        ],
+        "type": "flag",
+        "help": "same as -dR --preserve=all"
+      },
+      {
+        "id": "--attributes-only",
+        "forms": [
+          "--attributes-only"
+        ],
+        "type": "flag",
+        "help": "don't copy the file data, just the attributes"
+      },
+      {
+        "id": "--backup[",
+        "forms": [
+          "--backup["
+        ],
+        "type": "string",
+        "help": " make a backup of each existing destination file"
+      },
+      {
+        "id": "-b",
+        "forms": [
+          "-b"
+        ],
+        "type": "flag",
+        "help": " like --backup but does not accept an argument"
+      },
+      {
+        "id": "--copy-contents",
+        "forms": [
+          "--copy-contents"
+        ],
+        "type": "flag",
+        "help": "copy contents of special files when recursive"
+      },
+      {
+        "id": "-d",
+        "forms": [
+          "-d"
+        ],
+        "type": "flag",
+        "help": " same as --no-dereference --preserve=links"
+      },
+      {
+        "id": "-f",
+        "forms": [
+          "-f",
+          " --force"
+        ],
+        "type": "flag",
+        "help": "if an existing destination file cannot be\nopened, remove it and try again (this option\nis ignored when the -n option is also used)"
+      },
+      {
+        "id": "-i",
+        "forms": [
+          "-i",
+          " --interactive"
+        ],
+        "type": "flag",
+        "help": "prompt before overwrite (overrides a previous -n\noption)"
+      },
+      {
+        "id": "-H",
+        "forms": [
+          "-H"
+        ],
+        "type": "flag",
+        "help": " follow command-line symbolic links in SOURCE"
+      },
+      {
+        "id": "-l",
+        "forms": [
+          "-l",
+          " --link"
+        ],
+        "type": "flag",
+        "help": " hard link files instead of copying"
+      },
+      {
+        "id": "-L",
+        "forms": [
+          "-L",
+          " --dereference"
+        ],
+        "type": "flag",
+        "help": "always follow symbolic links in SOURCE"
+      },
+      {
+        "id": "-n",
+        "forms": [
+          "-n",
+          " --no-clobber"
+        ],
+        "type": "flag",
+        "help": " do not overwrite an existing file (overrides\na previous -i option)"
+      },
+      {
+        "id": "-P",
+        "forms": [
+          "-P",
+          " --no-dereference"
+        ],
+        "type": "flag",
+        "help": " never follow symbolic links in SOURCE"
+      },
+      {
+        "id": "-p",
+        "forms": [
+          "-p"
+        ],
+        "type": "flag",
+        "help": " same as --preserve=mode,ownership,timestamps"
+      },
+      {
+        "id": "--preserve[",
+        "forms": [
+          "--preserve["
+        ],
+        "type": "string",
+        "help": " preserve the specified attributes (default:\nmode,ownership,timestamps), if possible\nadditional attributes: context, links, xattr,\nall"
+      },
+      {
+        "id": "--no-preserve",
+        "forms": [
+          "--no-preserve"
+        ],
+        "type": "string",
+        "help": "don't preserve the specified attributes"
+      },
+      {
+        "id": "--parents",
+        "forms": [
+          "--parents"
+        ],
+        "type": "flag",
+        "help": "use full source file name under DIRECTORY"
+      },
+      {
+        "id": "-R",
+        "forms": [
+          "-R",
+          " -r",
+          " --recursive"
+        ],
+        "type": "flag",
+        "help": "copy directories recursively"
+      },
+      {
+        "id": "--reflink[",
+        "forms": [
+          "--reflink["
+        ],
+        "type": "string",
+        "help": " control clone/CoW copies. See below"
+      },
+      {
+        "id": "--remove-destination",
+        "forms": [
+          "--remove-destination"
+        ],
+        "type": "flag",
+        "help": " remove each existing destination file before\nattempting to open it (contrast with --force)"
+      },
+      {
+        "id": "--sparse",
+        "forms": [
+          "--sparse"
+        ],
+        "type": "string",
+        "help": "control creation of sparse files. See below"
+      },
+      {
+        "id": "--strip-trailing-slashes",
+        "forms": [
+          "--strip-trailing-slashes"
+        ],
+        "type": "flag",
+        "help": "remove any trailing slashes from each SOURCE\nargument"
+      },
+      {
+        "id": "-s",
+        "forms": [
+          "-s",
+          " --symbolic-link"
+        ],
+        "type": "flag",
+        "help": "make symbolic links instead of copying"
+      },
+      {
+        "id": "-S",
+        "forms": [
+          "-S",
+          " --suffix"
+        ],
+        "type": "string",
+        "help": "override the usual backup suffix"
+      },
+      {
+        "id": "-t",
+        "forms": [
+          "-t",
+          " --target-directory"
+        ],
+        "type": "string",
+        "help": "copy all SOURCE arguments into DIRECTORY"
+      },
+      {
+        "id": "-T",
+        "forms": [
+          "-T",
+          " --no-target-directory"
+        ],
+        "type": "flag",
+        "help": "treat DEST as a normal file"
+      },
+      {
+        "id": "-u",
+        "forms": [
+          "-u",
+          " --update"
+        ],
+        "type": "flag",
+        "help": " copy only when the SOURCE file is newer\nthan the destination file or when the\ndestination file is missing"
+      },
+      {
+        "id": "-v",
+        "forms": [
+          "-v",
+          " --verbose"
+        ],
+        "type": "flag",
+        "help": "explain what is being done"
+      },
+      {
+        "id": "-x",
+        "forms": [
+          "-x",
+          " --one-file-system"
+        ],
+        "type": "flag",
+        "help": "stay on this file system"
+      },
+      {
+        "id": "-Z",
+        "forms": [
+          "-Z"
+        ],
+        "type": "flag",
+        "help": " set SELinux security context of destination\nfile to default type"
+      },
+      {
+        "id": "--context[",
+        "forms": [
+          "--context["
+        ],
+        "type": "string",
+        "help": "like -Z, or if CTX is specified then set the\nSELinux or SMACK security context to CTX"
+      },
+      {
+        "id": "--help",
+        "forms": [
+          "--help"
+        ],
+        "type": "flag",
+        "help": " display this help and exit"
+      },
+      {
+        "id": "--version",
+        "forms": [
+          "--version"
+        ],
+        "type": "flag",
+        "help": "output version information and exit\nBy default, sparse SOURCE files are detected by a crude heuristic and the\ncorresponding DEST file is made sparse as well.  That is the behavior\nselected by --sparse=auto.  Specify --sparse=always to create a sparse DEST\nfile whenever the SOURCE file contains a long enough sequence of zero bytes.\nUse --sparse=never to inhibit creation of sparse files.\nWhen --reflink[=always] is specified, perform a lightweight copy, where the\ndata blocks are copied only when modified.  If this is not possible the copy\nfails, or if --reflink=auto is specified, fall back to a standard copy.\nUse --reflink=never to ensure a standard copy is performed.\nThe backup suffix is '~', unless set with --suffix or SIMPLE_BACKUP_SUFFIX.\nThe version control method may be selected via the --backup option or through\nthe VERSION_CONTROL environment variable.  Here are the values:\nnone, off       never make backups (even if --backup is given)\nnumbered, t     make numbered backups\nexisting, nil   numbered if numbered backups exist, simple otherwise\nsimple, never   always make simple backups\nAs a special case, cp makes a backup of SOURCE when the force and backup\noptions are given and SOURCE and DEST are the same name for an existing,\nregular file.\nGNU coreutils online help: <https://www.gnu.org/software/coreutils/>\nFull documentation at: <https://www.gnu.org/software/coreutils/cp>\nor available locally via: info '(coreutils) cp invocation'"
+      }
+    ]
+  },
+  {
+    "name": "cd",
+    "args": []
+  },
+  {
+    "name": "rm",
+    "args": [
+      {
+        "id": "-f",
+        "forms": [
+          "-f",
+          " --force"
+        ],
+        "type": "flag",
+        "help": " ignore nonexistent files and arguments, never prompt"
+      },
+      {
+        "id": "-i",
+        "forms": [
+          "-i"
+        ],
+        "type": "flag",
+        "help": "prompt before every removal"
+      },
+      {
+        "id": "-I",
+        "forms": [
+          "-I"
+        ],
+        "type": "flag",
+        "help": "prompt once before removing more than three files, or\nwhen removing recursively; less intrusive than -i,\nwhile still giving protection against most mistakes"
+      },
+      {
+        "id": "--interactive[",
+        "forms": [
+          "--interactive["
+        ],
+        "type": "string",
+        "help": "prompt according to WHEN: never, once (-I), or\nalways (-i); without WHEN, prompt always"
+      },
+      {
+        "id": "--one-file-system",
+        "forms": [
+          "--one-file-system"
+        ],
+        "type": "flag",
+        "help": "when removing a hierarchy recursively, skip any\ndirectory that is on a file system different from\nthat of the corresponding command line argument"
+      },
+      {
+        "id": "--no-preserve-root",
+        "forms": [
+          "--no-preserve-root"
+        ],
+        "type": "flag",
+        "help": "do not treat '/' specially"
+      },
+      {
+        "id": "--preserve-root[",
+        "forms": [
+          "--preserve-root["
+        ],
+        "type": "string",
+        "help": "do not remove '/' (default);\nwith 'all', reject any command line argument\non a separate device from its parent"
+      },
+      {
+        "id": "-r",
+        "forms": [
+          "-r",
+          " -R",
+          " --recursive"
+        ],
+        "type": "flag",
+        "help": " remove directories and their contents recursively"
+      },
+      {
+        "id": "-d",
+        "forms": [
+          "-d",
+          " --dir"
+        ],
+        "type": "flag",
+        "help": " remove empty directories"
+      },
+      {
+        "id": "-v",
+        "forms": [
+          "-v",
+          " --verbose"
+        ],
+        "type": "flag",
+        "help": " explain what is being done"
+      },
+      {
+        "id": "--help",
+        "forms": [
+          "--help"
+        ],
+        "type": "flag",
+        "help": " display this help and exit"
+      },
+      {
+        "id": "--version",
+        "forms": [
+          "--version"
+        ],
+        "type": "flag",
+        "help": "output version information and exit\nBy default, rm does not remove directories.  Use the --recursive (-r or -R)\noption to remove each listed directory, too, along with all of its contents.\nTo remove a file whose name starts with a '-', for example '-foo',\nuse one of these commands:\nrm -- -foo\nrm ./-foo\nNote that if you use rm to remove a file, it might be possible to recover\nsome of its contents, given sufficient expertise and/or time.  For greater\nassurance that the contents are truly unrecoverable, consider using shred.\nGNU coreutils online help: <https://www.gnu.org/software/coreutils/>\nFull documentation at: <https://www.gnu.org/software/coreutils/rm>\nor available locally via: info '(coreutils) rm invocation'"
+      }
+    ]
+  }
 ]
