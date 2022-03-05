@@ -7,7 +7,7 @@ class Terminal:
     def __init__(self) -> None:
         self.commands=dict()
         self.terminal_state=TerminalState()
-        self.cmdManager=command_manager.CommandManager([command_manager.ShellCommandsLoader(self.terminal_state),command_manager.HistoryCommandLoader()])
+        self.cmdManager=command_manager.CommandManager([command_manager.ShellCommandsLoader(self.terminal_state),command_manager.HistoryCommandLoader(),command_manager.JSOnBasedCommandLoader()])
        
 
 

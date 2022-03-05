@@ -1,0 +1,163 @@
+[
+    {
+        "name": "dir",
+        "views": [
+            {
+                "id": "default",
+                "type": "table",
+                "default":true,
+                "cols": [
+                    {
+                        "header": "Mode",
+                        "type": "string"
+                    },
+                    {
+                        "header": "LastWriteTime",
+                        "type": "datetime"
+                    },
+                    {
+                        "header": "Length",
+                        "type": "int"
+                    },
+                    {
+                        "header": "Name",
+                        "type": "string"
+                    }
+                ]
+            }
+        ],
+        "args": [
+            {
+                "forms": null,
+                "id": "path",
+                "required": true
+            },
+            {
+                "forms": [
+                    "/A"
+                ],
+                "id": "attrib",
+                "sep": ":",
+                "type": [
+                    "D",
+                    "H",
+                    "S",
+                    "L",
+                    "R",
+                    "A",
+                    "I",
+                    "O"
+                ],
+                "help": "filter files by (e.g. System files only)"
+            },
+            {
+                "forms": [
+                    "/B"
+                ],
+                "type": "flag",
+                "id": "simple"
+            },
+            {
+                "forms": [
+                    "/C"
+                ],
+                "type": "flag",
+                "id": "decimal_point"
+            },
+            {
+                "forms": [
+                    "/D"
+                ],
+                "type": "flag",
+                "id": "sort_columns"
+            },
+            {
+                "forms": [
+                    "/L"
+                ],
+                "type": "flag",
+                "id": "lowercase"
+            },
+            {
+                "forms": [
+                    "/N"
+                ],
+                "type": "flag",
+                "id": "long_list"
+            },
+            {
+                "forms": [
+                    "/O"
+                ],
+                "type": [
+                    "N",
+                    "E",
+                    "G",
+                    "S",
+                    "D"
+                ],
+                "id": "order"
+            },
+            {
+                "forms": [
+                    "/P"
+                ],
+                "type": "flag",
+                "id": "pause"
+            },
+            {
+                "forms": [
+                    "/Q"
+                ],
+                "type": "flag",
+                "id": "owner"
+            },
+            {
+                "forms": [
+                    "/R"
+                ],
+                "type": "flag",
+                "id": "lowercase"
+            },
+            {
+                "forms": [
+                    "/S"
+                ],
+                "type": "flag",
+                "id": "subdirectories"
+            },
+            {
+                "forms": [
+                    "/T"
+                ],
+                "type": [
+                    "C",
+                    "A",
+                    "W"
+                ],
+                "id": "time"
+            },
+            {
+                "forms": [
+                    "/W"
+                ],
+                "type": "flag",
+                "id": "widtht_format"
+            },
+            {
+                "forms": [
+                    "/X"
+                ],
+                "type": "flag",
+                "id": "short_name"
+            },
+            {
+                "forms": [
+                    "/4"
+                ],
+                "type": "flag",
+                "id": "log_year"
+            }
+        ]
+    }
+]

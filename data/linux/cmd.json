@@ -1,0 +1,26 @@
+[
+    {
+        "name": "dir",
+        "views": [
+            {
+                "id": "default",
+                "type": "table",
+                "default":true,
+                
+        "args": [
+            {
+                "forms": null,
+                "id": "path",
+                "required": true
+            }
+           
+        ]
+    }
+
+
+        ],
+        "args":[
+            
+        ]
+    }
+]
