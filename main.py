@@ -1,13 +1,16 @@
-from PyQt5.QtWidgets import QApplication, QLineEdit,QListWidget,QWidget,QVBoxLayout
+from PyQt5.QtWidgets import QApplication, QLineEdit,QListWidget,QWidget,QVBoxLayout,QCompleter
 import testing.test
 import sys
+from gui import CommandLineItemModel
 
 
-sys.exit(0)
+
 def main():
     app=QApplication([])
     win=QWidget()
     le=QLineEdit()
+    completer=QCompleter(CommandLineItemModel.CommandLineItemModel(),le)
+    le.setCompleter(completer)
     layout=QVBoxLayout()
     ls=QListWidget()
     layout.addWidget(ls)

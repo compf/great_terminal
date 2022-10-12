@@ -13,7 +13,7 @@ class Terminal:
 
     def execute_command(self,cmd:Command):
         if cmd.name in self.cmdManager.commands:
-            return self.commands[cmd.name](cmd)
+            return self.cmdManager.commands[cmd.name](cmd)
         else:
             return self.execute_external_command(cmd)
 

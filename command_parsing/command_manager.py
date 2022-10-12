@@ -13,7 +13,7 @@ class CommandLoader:
     def load(self):
         pass
 class ShellCommandsLoader(CommandLoader):
-    def __init__(self,terminalState) -> List[Command]:
+    def __init__(self,terminalState):
         super().__init__()
         self.terminalState=terminalState
     def load(self):

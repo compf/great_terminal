@@ -535,7 +535,7 @@
           "-b"
         ],
         "type": "flag",
-        "help": " like --backup but does not accept an argument"
+        "help": " lik git config --global --add safe.directory /home/compf/data/great_terminale --backup but does not accept an argument"
       },
       {
         "id": "-f",
