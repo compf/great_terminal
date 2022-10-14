@@ -27,15 +27,15 @@ class CommandLineCompleter(QCompleter):
 
     def splitPath(self,path:str)->List[str]:
         splitted=shlex.split(path)
-        return [splitted[0],splitted[-1]]
+        if len(splitted)==1:
+            return [splitted[0]]
+        else:
+            return [splitted[0],splitted[-1]]
     def pathFromIndex(self,index:QModelIndex):
-        print("start")
         result=""
         while index.isValid():
-            print(index.row())
             result=self.model().data(index)+ " " +result
             index=index.parent()
-        print(result)
         #print(index.row(),index.column())
-        return self.model().data(index)
+        return result
    
