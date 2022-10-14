@@ -10,7 +10,7 @@ def main():
     win=QWidget()
     le=QLineEdit()
     manager=command_manager.CommandManager([command_manager.JSOnBasedCommandLoader()])
-    completer=command_line_completer.CommandLineCompleter(manager)
+    completer=command_line_completer.CommandLineCompleter(manager,lambda : le.cursorPosition())
     le.setCompleter(completer)
     layout=QVBoxLayout()
     ls=QListWidget()

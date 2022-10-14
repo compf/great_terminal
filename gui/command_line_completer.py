@@ -6,8 +6,9 @@ from command_parsing import command_manager,command
 import re
 import shlex
 class CommandLineCompleter(QCompleter):
-    def __init__(self,manager:command_manager.CommandManager) -> None:
+    def __init__(self,manager:command_manager.CommandManager,cursor_pos_getter) -> None:
         super().__init__()
+        self.cursor_pos_getter=cursor_pos_getter
         self.prefix=""
         self.suffix=""
         self.commands=manager.commands
@@ -20,22 +21,18 @@ class CommandLineCompleter(QCompleter):
                 item.appendRow(QStandardItem(arg.name))
         self.setModel(model)
         self.last_input=""
-    def merge_names(self,name1:str,name2:str):
-        if name1.endswith("-"):
-            name1=name1.rstrip("-")
-        return name1 +name2
 
     def splitPath(self,path:str)->List[str]:
+        self.suffix=path[self.cursor_pos_getter():]
+        path=path[:self.cursor_pos_getter()]
         splitted=shlex.split(path)
         if len(splitted)==1:
             self.prefix=splitted[0]
-            self.suffix=""
             return [self.prefix]
         else:
             self.prefix=" ".join(splitted[:-1])
-            self.suffix=splitted[-1]
             return [splitted[0],splitted[-1]]
     def pathFromIndex(self,index:QModelIndex):
-        result=self.prefix+ " "+self.model().data(index)
+        result=self.prefix+ " "+self.model().data(index) +self.suffix
         return result
    
