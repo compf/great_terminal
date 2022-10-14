@@ -1,4 +1,5 @@
 from PyQt5.QtWidgets import QCompleter
+from PyQt5.QtGui import QStandardItemModel,QStandardItem
 from PyQt5.QtCore import QAbstractListModel,QModelIndex,QStringListModel
 from typing import List
 from command_parsing import command_manager,command
@@ -7,10 +8,16 @@ import shlex
 class CommandLineCompleter(QCompleter):
     def __init__(self,manager:command_manager.CommandManager) -> None:
         super().__init__()
-        
         self.commands=manager.commands
         self.data=[cmd.name for cmd in self.commands]
-        self.setModel(QStringListModel(self.data))
+        model=QStandardItemModel()
+        parentItem = model.invisibleRootItem()
+        for cmd in self.commands:
+            item=QStandardItem(cmd.name)
+            parentItem.appendRow(item)
+            for arg in cmd.args:
+                item.appendRow(QStandardItem(arg.name))
+        self.setModel(model)
         print([cmd.name for cmd in self.commands])
         self.last_input=""
     def merge_names(self,name1:str,name2:str):
@@ -20,20 +27,15 @@ class CommandLineCompleter(QCompleter):
 
     def splitPath(self,path:str)->List[str]:
         splitted=shlex.split(path)
-        template=[cmd for cmd in self.commands if cmd.name==splitted[0]]
-        template=template[0] if len(template)>0 else None
-        if template==None:
-            return [path]
-        cmd=command.Command.parse_command(template,path)
-        self.data=[self.merge_names(path,arg.name) for arg in template.args]
-        #print()
-        #print(path)
-        #print(data)
-        #print()
-        self.setModel(QStringListModel(self.data))
-        return [path]
+        return [splitted[0],splitted[-1]]
     def pathFromIndex(self,index:QModelIndex):
-        print("test")
-        print(index.row(),index.column())
-        return self.data[index.row()]
+        print("start")
+        result=""
+        while index.isValid():
+            print(index.row())
+            result=self.model().data(index)+ " " +result
+            index=index.parent()
+        print(result)
+        #print(index.row(),index.column())
+        return self.model().data(index)
    
