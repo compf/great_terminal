@@ -7,8 +7,11 @@ class CommandManager:
     def __init__(self,commandLoaders):
         self.commands=[]
         for cmd in commandLoaders:
-            print(cmd)
-            self.commands.append(cmd.load())
+            new_commands=cmd.load()
+            if new_commands==None:
+                continue
+            self.commands+=new_commands
+            print([cmd.name for cmd in self.commands])
 class CommandLoader:
     def load(self):
         pass
@@ -48,7 +51,7 @@ class JSOnBasedCommandLoader(CommandLoader):
                 arg=CommandArgument(name,type,required)
                 args.append(arg)
             cmd=Command(cmd_name,args)
-        commands.append(cmd)
+            commands.append(cmd)
         return commands
 
                 

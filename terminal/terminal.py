@@ -12,10 +12,8 @@ class Terminal:
 
 
     def execute_command(self,cmd:Command):
-        if cmd.name in self.cmdManager.commands:
-            return self.cmdManager.commands[cmd.name](cmd)
-        else:
-            return self.execute_external_command(cmd)
+
+        return self.execute_external_command(cmd)
 
     def execute_external_command(self,cmd:Command):
         cmd_transformed=[cmd.name]+[ (a.name if a.name!=None else "") + a.value for a in cmd.args ]
@@ -28,4 +26,4 @@ class Terminal:
         #print(result)
         
     def change_dir(self,cmd:Command):
-        self.terminalState.curr_dir=cmd.get_unnamed_args()[0]
+        self.terminal_state.curr_dir=cmd.get_unnamed_args()[0].value

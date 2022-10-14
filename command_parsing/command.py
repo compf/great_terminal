@@ -3,30 +3,44 @@ from typing import List
 import os
 import subprocess
 import shlex
-from command_parsing.man_page_parser import ManPageParser
+
 from abc import abstractmethod
 class Command:
     def __init__(self,name:str,args:List[CommandArgument]):
         self.name=name
         self.args=args
-   
+    def get_args_dict(self):
+        return dict((c.name,c) for c in self.args)
     def get_unnamed_args(self)->List[CommandArgument]:
         return [a for a in self.args if a.name==None]
-    @staticmethod
-    def construct_from_string(str):
-        splitted=shlex.split(str)
-        argList=[]
-        cmd=Command(splitted[0],argList)
-        read_args_from_man(cmd)
-    @staticmethod
-    def read_args_from_man(cmd):
 
-        pr=subprocess.Popen("man "+cmd.name +" ",stdout=subprocess.PIPE,shell=True)
-        txt=pr.communicate(None)[0].decode()
-        print(txt)
-        prs= ManPageParser(txt)
-        prs.parse()
-        #os.popen(,)
+    @staticmethod
+    def parse_command(template_command,command_str:str):
+        splitted=shlex.split(command_str)
+        argList=[]
+        arg_dict=template_command.get_args_dict()
+        cmd=Command(splitted[0],argList)
+    
+
+        if template_command.name!=splitted[0]:
+            return None
+        last_item=None
+        value=None
+        name=None
+        for arg in splitted[1:]:
+            if arg.startswith("--"):
+                name=arg
+                last_item="key"
+            elif last_item=="key":
+                value=arg
+                last_item="value"
+            else:
+                name=None
+                value=arg
+            if name in arg_dict:
+                argList.append(CommandArgument(name,arg_dict[name].type,value))
+
+    
 
 
 
