@@ -8,6 +8,8 @@ import shlex
 class CommandLineCompleter(QCompleter):
     def __init__(self,manager:command_manager.CommandManager) -> None:
         super().__init__()
+        self.prefix=""
+        self.suffix=""
         self.commands=manager.commands
         self.data=[cmd.name for cmd in self.commands]
         model=QStandardItemModel()
@@ -28,14 +30,18 @@ class CommandLineCompleter(QCompleter):
     def splitPath(self,path:str)->List[str]:
         splitted=shlex.split(path)
         if len(splitted)==1:
-            return [splitted[0]]
+            self.prefix=splitted[0]
+            self.suffix=""
+            return [self.prefix]
         else:
+            self.prefix=" ".join(splitted[:-1])
+            self.suffix=splitted[-1]
             return [splitted[0],splitted[-1]]
     def pathFromIndex(self,index:QModelIndex):
-        result=""
-        while index.isValid():
-            result=self.model().data(index)+ " " +result
-            index=index.parent()
+        result=self.prefix+ " "+self.model().data(index)
+        #while index.isValid():
+            #result=self.model().data(index)+ " " +result
+            #index=index.parent()
         #print(index.row(),index.column())
         return result
    
