@@ -13,6 +13,11 @@ class CommandLineCompleter(QCompleter):
         self.setModel(QStringListModel([cmd.name for cmd in self.commands]))
         print([cmd.name for cmd in self.commands])
         self.last_input=""
+    def merge_names(self,name1:str,name2:str):
+        if name1.endswith("-"):
+            name1=name1.rstrip("-")
+        return name1 +name2
+
     def splitPath(self,path:str)->List[str]:
         splitted=shlex.split(path)
         template=[cmd for cmd in self.commands if cmd.name==splitted[0]]
@@ -20,11 +25,15 @@ class CommandLineCompleter(QCompleter):
         if template==None:
             return [path]
         cmd=command.Command.parse_command(template,path)
-        data=[path+arg.name for arg in template.args]
-        print()
-        print(path)
-        print(data)
-        print()
-        self.setModel(QStringListModel(data))
+        self.data=[self.merge_names(path,arg.name) for arg in template.args]
+        #print()
+        #print(path)
+        #print(data)
+        #print()
+        self.setModel(QStringListModel(self.data))
         return [path]
+    def pathFromIndex(self,index:QModelIndex):
+        print("test")
+        print(index.row(),index.column())
+        return self.data[index.row()]
    
