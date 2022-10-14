@@ -65,8 +65,9 @@ class HistoryCommandLoader(CommandLoader):
     def __init__(self) -> None:
         super().__init__()
     def load(self):
+        return None
         pt=Environment.Environment.Instance.map[Environment.EnvironmentEnum.COMMAND_HISTORY]
         print(pt)
         with open(pt) as f:
             for line in f:
-                print(line)
+                pass

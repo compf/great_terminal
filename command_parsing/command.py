@@ -18,11 +18,11 @@ class Command:
     def parse_command(template_command,command_str:str):
         splitted=shlex.split(command_str)
         argList=[]
-        arg_dict=template_command.get_args_dict()
+        arg_dict=dict()
+        if template_command!=None:
+            arg_dict=template_command.get_args_dict()
         cmd=Command(splitted[0],argList)
-    
-
-        if template_command.name!=splitted[0]:
+        if template_command!=None and template_command.name!=splitted[0]:
             return None
         last_item=None
         value=None
@@ -38,7 +38,8 @@ class Command:
                 name=None
                 value=arg
             if name in arg_dict:
-                argList.append(CommandArgument(name,arg_dict[name].type,value))
+                argList.append(CommandArgument(name,arg_dict[name] if name in arg_dict else "".type,value))
+        return cmd
 
     
 

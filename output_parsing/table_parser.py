@@ -11,6 +11,7 @@ class TableParser(OutputParser):
 
     def parse_line(self, line: str):
         splitted=[ln for  ln in line.split(" ") if len(ln)>0]
+        print("splitted",splitted)
         if self.header==None:
             self.header=splitted
         else:

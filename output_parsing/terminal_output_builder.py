@@ -15,12 +15,9 @@ class TerminalOutputBuilder:
             while True:
                 line = next(cmd_it)
 
-                if "  " in line:
-                  
-                    self.parse_table(line, cmd_it)
-                else:
-                   
-                    self.parse_simple(line, cmd_it)
+                print("table")
+                self.parse_table(line, cmd_it)
+               
 
         except StopIteration:
             pass
@@ -29,7 +26,7 @@ class TerminalOutputBuilder:
     def parse_simple(self,line:str ,cmd_it):
         line_parser = SimpleLineParser()
         line_parser.parse_line(line)
-        self.result += line_parser.get_result_list()
+        self.result = line_parser.get_result_list()
     def parse_table(self,line:str,cmd_it):
         table_parser=TableParser()
         table_parser.parse_line(line)
@@ -37,8 +34,8 @@ class TerminalOutputBuilder:
             while True:
                 line=next(cmd_it)
                 table_parser.parse_line(line)
-                print(line)
         except StopIteration:
             pass
-        self.result+=(table_parser.header+table_parser.rows)
+        print("rows",table_parser.rows)
+        self.result=([table_parser.header]+table_parser.rows)
 

@@ -23,7 +23,7 @@ class Terminal:
         
         builder=TerminalOutputBuilder(p.stdout)
         result=builder.parse()
-        #print(result)
+        return result
         
     def change_dir(self,cmd:Command):
         self.terminal_state.curr_dir=cmd.get_unnamed_args()[0].value
