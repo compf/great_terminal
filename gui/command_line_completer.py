@@ -11,7 +11,6 @@ class CommandLineCompleter(QCompleter):
         self.prefix=""
         self.suffix=""
         self.commands=manager.commands
-        self.data=[cmd.name for cmd in self.commands]
         model=QStandardItemModel()
         parentItem = model.invisibleRootItem()
         for cmd in self.commands:
@@ -20,7 +19,6 @@ class CommandLineCompleter(QCompleter):
             for arg in cmd.args:
                 item.appendRow(QStandardItem(arg.name))
         self.setModel(model)
-        print([cmd.name for cmd in self.commands])
         self.last_input=""
     def merge_names(self,name1:str,name2:str):
         if name1.endswith("-"):
@@ -39,9 +37,5 @@ class CommandLineCompleter(QCompleter):
             return [splitted[0],splitted[-1]]
     def pathFromIndex(self,index:QModelIndex):
         result=self.prefix+ " "+self.model().data(index)
-        #while index.isValid():
-            #result=self.model().data(index)+ " " +result
-            #index=index.parent()
-        #print(index.row(),index.column())
         return result
    
