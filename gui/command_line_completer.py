@@ -9,8 +9,8 @@ class CommandLineCompleter(QCompleter):
         super().__init__()
         
         self.commands=manager.commands
-
-        self.setModel(QStringListModel([cmd.name for cmd in self.commands]))
+        self.data=[cmd.name for cmd in self.commands]
+        self.setModel(QStringListModel(self.data))
         print([cmd.name for cmd in self.commands])
         self.last_input=""
     def merge_names(self,name1:str,name2:str):
