@@ -23,7 +23,7 @@ class Command:
             arg_dict=template_command.get_args_dict()
         cmd=Command(splitted[0],argList)
         if template_command!=None and template_command.name!=splitted[0]:
-            return None
+            raise ValueError("template command does not match command name")
         last_item=None
         value=None
         name=None
@@ -38,7 +38,7 @@ class Command:
                 name=None
                 value=arg
             if name in arg_dict:
-                argList.append(CommandArgument(name,arg_dict[name] if name in arg_dict else "".type,value))
+                argList.append(CommandArgument(name,arg_dict[name].type if name in arg_dict else "",value))
         return cmd
 
     

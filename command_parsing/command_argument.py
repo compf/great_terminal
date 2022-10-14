@@ -1,8 +1,8 @@
-from typing import Any
+from typing import Any,Union
 
 
 class CommandArgument:
-    def __init__(self,name:str,type:str,value:Any,required=False):
+    def __init__(self,name:Union[str,None],type:Union[str,None],value:Union[str,None],required=False):
         self.name=name
         self.type=type
         self.value=value

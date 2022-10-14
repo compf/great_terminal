@@ -8,7 +8,7 @@ class OutputParser:
     def __init__(self) -> None:
         self.result_list = []
 
-    def get_result_list(self) -> List[TerminalOutput]:
+    def get_result_list(self) -> List[str]:
         return self.result_list
 
     @abc.abstractmethod

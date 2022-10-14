@@ -1,8 +1,8 @@
 from PyQt5.QtWidgets import QTableView
 from PyQt5.QtGui import QStandardItemModel,QStandardItem
-
+from typing import List
 from output_parsing.terminal_output_builder import TerminalOutputBuilder
-def create_table_view(table_parser:TerminalOutputBuilder):
+def create_table_view(table_parser:List[List[str]]) ->QTableView:
     table_view=QTableView()
     item_model=QStandardItemModel()
     y=0

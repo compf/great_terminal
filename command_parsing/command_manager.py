@@ -21,7 +21,7 @@ class ShellCommandsLoader(CommandLoader):
         self.terminalState=terminalState
     def load(self):
         result=[]
-        result.append(ShellCommands.ChangeDirCommand("cd",[CommandArgument(None,str,None)],self.terminalState))
+        result.append(ShellCommands.ChangeDirCommand("cd",[CommandArgument(None,"str",None)],self.terminalState))
         return result
 class JSOnBasedCommandLoader(CommandLoader):
     def load(self):
@@ -48,7 +48,7 @@ class JSOnBasedCommandLoader(CommandLoader):
                 required=True if "required"  in json_arg and  json_arg["required"]==True else False
                 id=json_arg["id"]
                 type=json_arg["type"]
-                arg=CommandArgument(name,type,required)
+                arg=CommandArgument(name,type,None,required)
                 args.append(arg)
             cmd=Command(cmd_name,args)
             commands.append(cmd)

@@ -5,7 +5,7 @@ import unittest
 
 
 ter=Terminal()
-args=[CommandArgument(None,str,r"/etc")]
+args=[CommandArgument(None,"",r"/etc")]
 cmd=Command("dir",args)
 ter.execute_command(cmd)
 #Command.read_args_from_man(Command("useradd",[]))

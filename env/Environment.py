@@ -5,7 +5,7 @@ class EnvironmentEnum(IntEnum):
     JSON_COMMANDS=1
     Home_DIRECTORY=2
 class Environment:
-    Instance=None
+    Instance:Environment=None
     def __init__(self) -> None:
         self.map=dict()
 class LinuxEnvironment(Environment):

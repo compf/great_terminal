@@ -1,11 +1,13 @@
 from PyQt5.QtWidgets  import QApplication, QLineEdit,QListWidget,QWidget,QVBoxLayout,QCompleter
 #import testing.test
 import sys
-from gui import command_line_completer, table_view_creator
+from typing import Dict,Union
+from gui.command_line_completer import CommandLineCompleter
+from gui.table_view_creator import create_table_view
 from terminal import terminal
-from command_parsing import command
-from command_parsing import command_manager
-ui_widgets={
+from command_parsing.command import Command
+from command_parsing.command_manager import CommandManager,JSOnBasedCommandLoader
+ui_widgets:Dict[str,Union[QLineEdit,QVBoxLayout,None]]={
     "le":None,
     "layout":None
 }
@@ -13,18 +15,19 @@ def return_press():
     term=terminal.Terminal()
     le=ui_widgets["le"]
     layout=ui_widgets["layout"]
-    cmd=command.Command.parse_command(None,le.text())
+    assert le is not None and layout is not None
+    cmd=Command.parse_command(None,le.text())
     tbl=term.execute_command(cmd)
-    print("table",tbl)
-    layout.addWidget(table_view_creator.create_table_view(tbl))
+    assert tbl is not None
+    layout.addWidget(create_table_view(tbl))
     
 def main():
     app=QApplication([])
     win=QWidget()
     le=QLineEdit()
     le.returnPressed.connect(return_press)
-    manager=command_manager.CommandManager([command_manager.JSOnBasedCommandLoader()])
-    completer=command_line_completer.CommandLineCompleter(manager,lambda : le.cursorPosition())
+    manager=CommandManager([JSOnBasedCommandLoader()])
+    completer=CommandLineCompleter(manager,lambda : le.cursorPosition())
     le.setCompleter(completer)
     layout=QVBoxLayout()
     ls=QListWidget()
