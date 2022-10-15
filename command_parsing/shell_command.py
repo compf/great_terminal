@@ -15,7 +15,5 @@ class ChangeDirCommand(ShellCommand):
         super().__init__(name, args, terminalState)
        
     def execute(self):
-        print("zdf")
         arg=self.get_unnamed_args()[0]
-        print("Unnamed argument",arg)
         self.terminalState.curr_dir=arg.value

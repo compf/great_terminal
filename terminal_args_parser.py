@@ -12,7 +12,6 @@ def add_args(command,argsfile):
         obj=types.SimpleNamespace()
         obj.name=command
         obj.args=[]
-        print(obj)
 
     output=subprocess.getoutput(help_command )
     new_arg=None
@@ -27,14 +26,10 @@ def add_args(command,argsfile):
                 right=splitted[1]
 
           
-            print(left,right)
             new_arg=types.SimpleNamespace()
-            #print(line)
             names=left.split(",")
-            #print(names)
            
             #names=[n.replace(",","").strip() for n in names]
-            #print(names)
 
             new_arg.id=names[0].split("=")[0].replace("]","")
             new_arg.forms=[n.split("=")[0].replace("]","") for n in names]
@@ -55,7 +50,6 @@ def add_args(command,argsfile):
     jsonfile.append(obj)
     with open(argsfile,"w") as f:
         json.dump(jsonfile,f,default=vars,indent=2)
-    #print(output)
 if __name__=="__main__":
     args=sys.argv[1:]
     commands=["ls","mv","cp","cd","rm"]

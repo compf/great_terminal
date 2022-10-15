@@ -21,10 +21,8 @@ class ManPageParser:
         while True:
             line=next(my_it)
             if line.startswith("SYNOPSIS"):
-                print("syn")
                 self.parse_synopsis(my_it)
             if line.startswith("DESCRIPTION"):
-                print("dexcr")
                 self.parse_description(my_it)
     def parse_synopsis(self,my_it):
         pass

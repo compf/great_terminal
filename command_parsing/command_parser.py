@@ -17,7 +17,6 @@ def parse_command(manager:CommandManager,command_str:str):
             template_command=template_command[0]
             arg_dict=template_command.get_args_dict()  
         if isinstance(template_command,ShellCommand):
-            print("shell command")
             cmd=parse_shell_command(splitted[0],argList,template_command.terminalState)
         else:
             cmd=Command(splitted[0],argList)

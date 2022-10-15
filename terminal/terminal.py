@@ -12,16 +12,12 @@ class Terminal:
 
 
     def execute_command(self,cmd:Command):
-        print("execute",cmd.name,cmd)
         if isinstance(cmd,shell_command.ShellCommand):
-            print("shell",cmd.name)
             return cmd.execute()
         else:
             return self.execute_external_command(cmd)
     def expand(self,arg:str):
-        print("expand",arg)
         if arg.startswith("."):
-            print("newarg",self.terminal_state.curr_dir + arg[1:])
             return self.terminal_state.curr_dir + arg[1:]
         else:
             return arg
@@ -42,5 +38,4 @@ class Terminal:
     def change_dir(self,cmd:Command):
         new_workdir=cmd.get_unnamed_args()[0].value
         assert new_workdir is not None
-        print("change dir",new_workdir)
         self.terminal_state.curr_dir=new_workdir

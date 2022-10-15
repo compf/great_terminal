@@ -9,12 +9,9 @@ class CommandManager:
         self.commands:MutableSet[Command]=set()
         for cmd in commandLoaders:
             new_commands=cmd.load()
-            print("adding",new_commands)
             if new_commands==None:
                 continue
             self.commands|=set(new_commands)
-            print("cmd len",len(self.commands))
-            print("new commands",[(cmd.name,cmd) for cmd in self.commands])
 class CommandLoader:
     def load(self):
         pass
@@ -23,7 +20,6 @@ class ShellCommandsLoader(CommandLoader):
         super().__init__()
         self.terminalState=terminalState
     def load(self):
-        print("load shell")
         result=[]
         result.append(shell_command.ChangeDirCommand("cd",[CommandArgument("","path","")],self.terminalState))
         return result
@@ -71,7 +67,6 @@ class HistoryCommandLoader(CommandLoader):
     def load(self):
         return None
         pt=Environment.Environment.Instance.map[Environment.EnvironmentEnum.COMMAND_HISTORY]
-        print(pt)
         with open(pt) as f:
             for line in f:
                 pass

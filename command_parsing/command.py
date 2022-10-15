@@ -15,12 +15,9 @@ class Command:
     def __hash__(self) -> int:
         return self.name.__hash__()
     def __eq__(self, __o: object) -> bool:
-        print("comp")
         if not isinstance(__o,Command):
-            print(False)
             return False
         obj:Command=__o
-        print("compare",__o.name,self.name,self.name==__o.name)
         return self.name==__o.name
    
 

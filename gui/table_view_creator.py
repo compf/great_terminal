@@ -10,7 +10,6 @@ def create_table_view(table_parser:List[List[str]]) ->QGridLayout:
     item_model=QStandardItemModel()
     y=0
     x=0
-    print("windows",table_parser)
     for r in table_parser:
         for c in r:
             lbl=QLabel()
@@ -20,6 +19,7 @@ def create_table_view(table_parser:List[List[str]]) ->QGridLayout:
       
             grid_view.addWidget(lbl,y,x)
             grid_view.setRowMinimumHeight(y,30)
+            x+=1
         x=0
         y+=1
     return grid_view

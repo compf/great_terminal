@@ -14,8 +14,6 @@ class TerminalOutputBuilder:
             cmd_it = iter(self.stdout.readlines())
             while True:
                 line = next(cmd_it)
-
-                print("table")
                 self.parse_table(line, cmd_it)
                
 
