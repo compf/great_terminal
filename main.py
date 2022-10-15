@@ -1,5 +1,6 @@
-from PyQt5.QtWidgets  import QApplication, QLineEdit,QListWidget,QWidget,QVBoxLayout,QHBoxLayout,QCompleter,QScrollArea,QAbstractScrollArea,QLayout,QGridLayout,QMainWindow,QPushButton
+from PyQt5.QtWidgets  import QApplication, QLineEdit,QListWidget,QWidget,QVBoxLayout,QHBoxLayout,QCompleter,QScrollArea,QAbstractScrollArea,QLayout,QGridLayout,QMainWindow,QPushButton,QShortcut,QFileDialog
 from PyQt5.QtCore import QObject
+from PyQt5.QtGui import QKeySequence
 #import testing.test
 import sys
 import command_parsing.command_parser
@@ -36,7 +37,12 @@ def return_press():
         le.setText("")
         shared_components.viewPort.resize(shared_components.viewPort.size().width(),shared_components.viewPort.size().height()+INCREASE_BY)
 
-             
+def open_directory():
+    dir=QFileDialog.getExistingDirectory(shared_components.window)    
+    shared_components.lineEdit.insert(dir)
+def open_file():
+    file=QFileDialog.getOpenFileName(shared_components.window)[0]    
+    shared_components.lineEdit.insert(file)         
 def init_gui():
     app=QApplication([])
     win=QWidget()
@@ -63,6 +69,9 @@ def init_gui():
     win.resize(1000,800)
     win.setLayout(outer_layout)
     scrollArea.setWidget(viewPort)
+    dir_shortcut=QShortcut(QKeySequence('Ctrl+D'), le, open_directory)
+    file_shortcut=QShortcut(QKeySequence('Ctrl+O'), le, open_file)
+
 
 
     return SharedComponents(le,layout,win,app,viewPort)
