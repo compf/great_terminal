@@ -29,9 +29,11 @@ class Terminal:
     def execute_external_command(self,cmd:Command):
         cmd_transformed=[cmd.name]+[ (a.name if   a.name!=None  else "") + self.expand(a.value) for a in cmd.args if a.value!=None]
         
-        print("run",cmd_transformed)
-        p=subprocess.Popen(cmd_transformed,bufsize=-1,stdout=subprocess.PIPE,shell=False,cwd=self.terminal_state.curr_dir,
+        try:
+            p=subprocess.Popen(cmd_transformed,bufsize=-1,stdout=subprocess.PIPE,shell=False,cwd=self.terminal_state.curr_dir,
         text=True)
+        except FileNotFoundError as f_err:
+            return [["Could not execute "+cmd.name + " as the command was not found"]]
         assert p.stdout!=None
         builder=TerminalOutputBuilder(p.stdout)
         result=builder.parse()
