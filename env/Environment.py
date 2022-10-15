@@ -1,3 +1,4 @@
+from __future__ import annotations
 from enum import IntEnum
 import os
 class EnvironmentEnum(IntEnum):
@@ -5,7 +6,7 @@ class EnvironmentEnum(IntEnum):
     JSON_COMMANDS=1
     Home_DIRECTORY=2
 class Environment:
-    Instance:Environment=None
+    Instance:Environment=None# type: ignore
     def __init__(self) -> None:
         self.map=dict()
 class LinuxEnvironment(Environment):
