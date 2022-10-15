@@ -1,4 +1,5 @@
-from .command import Command,CommandArgument
+from command_parsing.command import Command,CommandArgument
+
 from abc import *
 from typing import List
 
@@ -10,5 +11,11 @@ class ShellCommand(Command):
     def execute(self):
         pass
 class ChangeDirCommand(ShellCommand):
+    def __init__(self, name: str, args: List[CommandArgument], terminalState):
+        super().__init__(name, args, terminalState)
+       
     def execute(self):
-        self.terminalState.curr_dir=self.get_unnamed_args()[0]
+        print("zdf")
+        arg=self.get_unnamed_args()[0]
+        print("Unnamed argument",arg)
+        self.terminalState.curr_dir=arg.value

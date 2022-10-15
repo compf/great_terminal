@@ -1,31 +1,34 @@
 from PyQt5.QtWidgets  import QApplication, QLineEdit,QListWidget,QWidget,QVBoxLayout,QCompleter
 #import testing.test
 import sys
-from typing import Dict,Union
+import command_parsing.command_parser
+from typing import Dict,Union,List
 from gui.command_line_completer import CommandLineCompleter
 from gui.table_view_creator import create_table_view
 from terminal import terminal
 from command_parsing.command import Command
-from command_parsing.command_manager import CommandManager,JSOnBasedCommandLoader
+from command_parsing.command_manager import CommandManager,JSOnBasedCommandLoader,ShellCommandsLoader,CommandLoader
 
-class GuiComponents:
+class SharedComponents:
     def __init__(self,le:QLineEdit,layout:QVBoxLayout,window:QWidget,app:QApplication) -> None:
         self.lineEdit=le
         self.vLayout=layout
         self.window=window
         self.app=app
+        self.terminal:terminal.Terminal
+        self.manager:CommandManager
 def return_press():
-    term=terminal.Terminal()
-    le=gui_components.lineEdit
-    layout=gui_components.vLayout
+    term=shared_components.terminal
+    le=shared_components.lineEdit
+    layout=shared_components.vLayout
     assert le is not None and layout is not None
-    cmd=Command.parse_command(None,le.text())
+    cmd=command_parsing.command_parser.parse_command(shared_components.manager,le.text())
     table_Data=term.execute_command(cmd)
-    assert table_Data is not None
-    table=create_table_view(table_Data)
-    layout.removeWidget(le)
-    layout.addWidget(table)
-    layout.addWidget(le)
+    if table_Data!=None:
+        table=create_table_view(table_Data)
+        layout.removeWidget(le)
+        layout.addWidget(table)
+        layout.addWidget(le)
 def init_gui():
     app=QApplication([])
     win=QWidget()
@@ -34,16 +37,19 @@ def init_gui():
     layout=QVBoxLayout()
     layout.addWidget(le)
     win.setLayout(layout)
-    return GuiComponents(le,layout,win,app)
+    return SharedComponents(le,layout,win,app)
 
-def init_completion(guiComponents:GuiComponents):
-    manager=CommandManager([JSOnBasedCommandLoader()])
-    completer=CommandLineCompleter(manager,lambda : guiComponents.lineEdit.cursorPosition())
-    guiComponents.lineEdit.setCompleter(completer)
+def init_completion(sharedComponents:SharedComponents):
+    completer=CommandLineCompleter(sharedComponents.manager,lambda : sharedComponents.lineEdit.cursorPosition())
+    sharedComponents.lineEdit.setCompleter(completer)
+def init_terminal(shared_components:SharedComponents):
+    shared_components.terminal=terminal.Terminal()
+    shared_components.manager=CommandManager([ShellCommandsLoader(shared_components.terminal.terminal_state),JSOnBasedCommandLoader()])
 def main():
-    global gui_components
-    gui_components=init_gui()
-    init_completion(gui_components)
-    gui_components.window.show()
-    return gui_components.app.exec()
+    global shared_components
+    shared_components=init_gui()
+    init_terminal(shared_components)
+    init_completion(shared_components)
+    shared_components.window.show()
+    return shared_components.app.exec()
 main()

@@ -1,17 +1,20 @@
 from abc import abstractmethod
 from command_parsing.command import *
-from command_parsing import ShellCommands
+from command_parsing import shell_command
 from env import Environment
+from typing import MutableSet
 import json
 class CommandManager:
     def __init__(self,commandLoaders):
-        self.commands=[]
+        self.commands:MutableSet[Command]=set()
         for cmd in commandLoaders:
             new_commands=cmd.load()
+            print("adding",new_commands)
             if new_commands==None:
                 continue
-            self.commands+=new_commands
-            print([cmd.name for cmd in self.commands])
+            self.commands|=set(new_commands)
+            print("cmd len",len(self.commands))
+            print("new commands",[(cmd.name,cmd) for cmd in self.commands])
 class CommandLoader:
     def load(self):
         pass
@@ -20,8 +23,9 @@ class ShellCommandsLoader(CommandLoader):
         super().__init__()
         self.terminalState=terminalState
     def load(self):
+        print("load shell")
         result=[]
-        result.append(ShellCommands.ChangeDirCommand("cd",[CommandArgument(None,"str",None)],self.terminalState))
+        result.append(shell_command.ChangeDirCommand("cd",[CommandArgument("","path","")],self.terminalState))
         return result
 class JSOnBasedCommandLoader(CommandLoader):
     def load(self):

@@ -18,7 +18,7 @@ class CommandLineCompleter(QCompleter):
             item=QStandardItem(cmd.name)
             parentItem.appendRow(item)
             for arg in cmd.args:
-                item.appendRow(QStandardItem(arg.name))
+                item.appendRow(QStandardItem(arg.name))# type: ignore
         self.setModel(model)
         self.last_input=""
 

@@ -20,6 +20,12 @@
     "name": "ls",
     "args": [
       {
+        "id":"",
+        "type":"path",
+        "help": "The path to iterate",
+        "forms":[""]
+      },
+      {
         "id": "-a",
         "forms": [
           "-a",
