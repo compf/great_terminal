@@ -1,4 +1,5 @@
 from PyQt5.QtWidgets  import QApplication, QLineEdit,QListWidget,QWidget,QVBoxLayout,QHBoxLayout,QCompleter,QScrollArea,QAbstractScrollArea,QLayout,QGridLayout,QMainWindow,QPushButton
+from PyQt5.QtCore import QObject
 #import testing.test
 import sys
 import command_parsing.command_parser
@@ -15,9 +16,10 @@ class SharedComponents:
         self.vLayout=layout
         self.window=window
         self.app=app
-        self.terminal:terminal.Termin
+        self.terminal:terminal.Terminal
         self.viewPort=viewport
 def return_press():
+    INCREASE_BY=200
     term=shared_components.terminal
     le=shared_components.lineEdit
     layout=shared_components.vLayout
@@ -26,13 +28,15 @@ def return_press():
     table_Data=term.execute_command(cmd)
     if table_Data!=None:
         table=create_table_view(table_Data)
-
-        print("add")
-        #layout.removeWidget(le)
+        command_le=QLineEdit()
+        command_le.setReadOnly(True)
+        command_le.setText(le.text())
+        layout.addWidget(command_le)
         layout.addLayout(table)
-        shared_components.viewPort.resize(shared_components.viewPort.size().width(),shared_components.viewPort.size().height()+200)
-        #layout.addWidget(btn)
-        #layout.addWidget(le)
+        le.setText("")
+        shared_components.viewPort.resize(shared_components.viewPort.size().width(),shared_components.viewPort.size().height()+INCREASE_BY)
+
+             
 def init_gui():
     app=QApplication([])
     win=QWidget()
