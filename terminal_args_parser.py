@@ -1,18 +1,26 @@
 import argparse
 import subprocess
-import sys
+import sys,os
 import re
 import json
 import types
 
 def add_args(command,argsfile):
     help_command=command+" --help"
-    with open(argsfile) as f:
-        jsonfile=json.load(f)
+    if not  os.path.exists(argsfile):
+        jsonfile={}
         obj=types.SimpleNamespace()
         obj.name=command
         obj.args=[]
+    else:
 
+        with open(argsfile) as f:
+            jsonfile=json.load(f)
+            obj=types.SimpleNamespace()
+            obj.name=command
+            obj.args=[]
+    if command in jsonfile:
+        return
     output=subprocess.getoutput(help_command )
     new_arg=None
     for line in output.split("\n"):
@@ -31,8 +39,8 @@ def add_args(command,argsfile):
            
             #names=[n.replace(",","").strip() for n in names]
 
-            new_arg.id=names[0].split("=")[0].replace("]","")
-            new_arg.forms=[n.split("=")[0].replace("]","") for n in names]
+            new_arg.id=names[0].split("=")[0].replace("]","").replace("[","")
+            new_arg.forms=[n.split("=")[0].replace("]","").replace("[","") for n in names]
             new_arg.type="string" if any([n for n in names if "=" in n]) else "flag"
 
             
@@ -47,7 +55,7 @@ def add_args(command,argsfile):
                 new_arg.help+="\n"+remaining
 
            
-    jsonfile.append(obj)
+    jsonfile[obj.name]=obj
     with open(argsfile,"w") as f:
         json.dump(jsonfile,f,default=vars,indent=2)
 if __name__=="__main__":

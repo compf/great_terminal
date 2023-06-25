@@ -30,10 +30,10 @@ class JSOnBasedCommandLoader(CommandLoader):
             my_json=json.load((f))
         return self.parse_json(my_json)
         
-    def parse_json(self,json_array):
+    def parse_json(self,json_obj):
         commands=[]
-        for json_cmd in json_array:
-            cmd_name=json_cmd["name"]
+        for cmd_name in json_obj:
+            json_cmd=json_obj[cmd_name]
             args=[]
            
             for json_arg in json_cmd["args"]:

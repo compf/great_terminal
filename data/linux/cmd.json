@@ -1,30 +1,7 @@
-[
-  {
-    "name": "dir",
-    "views": [
-      {
-        "id": "default",
-        "type": "table",
-        "default": true
-      }
-    ],
-    "args": [
-      {
-        "forms": null,
-        "id": "path",
-        "required": true
-      }
-    ]
-  },
-  {
+{
+  "ls": {
     "name": "ls",
     "args": [
-      {
-        "id":"",
-        "type":"path",
-        "help": "The path to iterate",
-        "forms":[""]
-      },
       {
         "id": "-a",
         "forms": [
@@ -94,9 +71,9 @@
         "help": " list entries by columns"
       },
       {
-        "id": "--color[",
+        "id": "--color",
         "forms": [
-          "--color["
+          "--color"
         ],
         "type": "string",
         "help": " colorize the output; WHEN can be 'always' (default\nif omitted), 'auto', or 'never'; more info below"
@@ -228,9 +205,9 @@
         "help": " do not list implied entries matching shell PATTERN\n(overridden by -a or -A)"
       },
       {
-        "id": "--hyperlink[",
+        "id": "--hyperlink",
         "forms": [
-          "--hyperlink["
+          "--hyperlink"
         ],
         "type": "string",
         "help": " hyperlink file names; WHEN can be 'always'\n(default if omitted), 'auto', or 'never'"
@@ -413,7 +390,7 @@
           "--time"
         ],
         "type": "string",
-        "help": "with -l, show time as WORD instead of default\nmodification time: atime or access or use (-u);\nctime or status (-c); also use specified time\nas sort key if --sort=time (newest first)"
+        "help": "change the default of using modification times;\naccess time (-u): atime, access, use;\nchange time (-c): ctime, status;\nbirth time: birth, creation;\nwith -l, WORD determines which time to show;\nwith --sort=time, sort by WORD (newest first)"
       },
       {
         "id": "--time-style",
@@ -429,7 +406,7 @@
           "-t"
         ],
         "type": "flag",
-        "help": " sort by modification time, newest first"
+        "help": " sort by time, newest first; see --time"
       },
       {
         "id": "-T",
@@ -520,17 +497,17 @@
           "--version"
         ],
         "type": "flag",
-        "help": "output version information and exit\nThe SIZE argument is an integer and optional unit (example: 10K is 10*1024).\nUnits are K,M,G,T,P,E,Z,Y (powers of 1024) or KB,MB,... (powers of 1000).\nThe TIME_STYLE argument can be full-iso, long-iso, iso, locale, or +FORMAT.\nFORMAT is interpreted like in date(1).  If FORMAT is FORMAT1<newline>FORMAT2,\nthen FORMAT1 applies to non-recent files and FORMAT2 to recent files.\nTIME_STYLE prefixed with 'posix-' takes effect only outside the POSIX locale.\nAlso the TIME_STYLE environment variable sets the default style to use.\nUsing color to distinguish file types is disabled both by default and\nwith --color=never.  With --color=auto, ls emits color codes only when\nstandard output is connected to a terminal.  The LS_COLORS environment\nvariable can change the settings.  Use the dircolors command to set it.\nExit status:\n0  if OK,\n1  if minor problems (e.g., cannot access subdirectory),\n2  if serious trouble (e.g., cannot access command-line argument).\nGNU coreutils online help: <https://www.gnu.org/software/coreutils/>\nFull documentation at: <https://www.gnu.org/software/coreutils/ls>\nor available locally via: info '(coreutils) ls invocation'"
+        "help": "output version information and exit\nThe SIZE argument is an integer and optional unit (example: 10K is 10*1024).\nUnits are K,M,G,T,P,E,Z,Y (powers of 1024) or KB,MB,... (powers of 1000).\nBinary prefixes can be used, too: KiB=K, MiB=M, and so on.\nThe TIME_STYLE argument can be full-iso, long-iso, iso, locale, or +FORMAT.\nFORMAT is interpreted like in date(1).  If FORMAT is FORMAT1<newline>FORMAT2,\nthen FORMAT1 applies to non-recent files and FORMAT2 to recent files.\nTIME_STYLE prefixed with 'posix-' takes effect only outside the POSIX locale.\nAlso the TIME_STYLE environment variable sets the default style to use.\nUsing color to distinguish file types is disabled both by default and\nwith --color=never.  With --color=auto, ls emits color codes only when\nstandard output is connected to a terminal.  The LS_COLORS environment\nvariable can change the settings.  Use the dircolors command to set it.\nExit status:\n0  if OK,\n1  if minor problems (e.g., cannot access subdirectory),\n2  if serious trouble (e.g., cannot access command-line argument).\nGNU coreutils online help: <https://www.gnu.org/software/coreutils/>\nFull documentation <https://www.gnu.org/software/coreutils/ls>\nor available locally via: info '(coreutils) ls invocation'"
       }
     ]
   },
-  {
+  "mv": {
     "name": "mv",
     "args": [
       {
-        "id": "--backup[",
+        "id": "--backup",
         "forms": [
-          "--backup["
+          "--backup"
         ],
         "type": "string",
         "help": " make a backup of each existing destination file"
@@ -541,7 +518,7 @@
           "-b"
         ],
         "type": "flag",
-        "help": " lik git config --global --add safe.directory /home/compf/data/great_terminale --backup but does not accept an argument"
+        "help": " like --backup but does not accept an argument"
       },
       {
         "id": "-f",
@@ -646,11 +623,11 @@
           "--version"
         ],
         "type": "flag",
-        "help": "output version information and exit\nThe backup suffix is '~', unless set with --suffix or SIMPLE_BACKUP_SUFFIX.\nThe version control method may be selected via the --backup option or through\nthe VERSION_CONTROL environment variable.  Here are the values:\nnone, off       never make backups (even if --backup is given)\nnumbered, t     make numbered backups\nexisting, nil   numbered if numbered backups exist, simple otherwise\nsimple, never   always make simple backups\nGNU coreutils online help: <https://www.gnu.org/software/coreutils/>\nFull documentation at: <https://www.gnu.org/software/coreutils/mv>\nor available locally via: info '(coreutils) mv invocation'"
+        "help": "output version information and exit\nThe backup suffix is '~', unless set with --suffix or SIMPLE_BACKUP_SUFFIX.\nThe version control method may be selected via the --backup option or through\nthe VERSION_CONTROL environment variable.  Here are the values:\nnone, off       never make backups (even if --backup is given)\nnumbered, t     make numbered backups\nexisting, nil   numbered if numbered backups exist, simple otherwise\nsimple, never   always make simple backups\nGNU coreutils online help: <https://www.gnu.org/software/coreutils/>\nFull documentation <https://www.gnu.org/software/coreutils/mv>\nor available locally via: info '(coreutils) mv invocation'"
       }
     ]
   },
-  {
+  "cp": {
     "name": "cp",
     "args": [
       {
@@ -671,9 +648,9 @@
         "help": "don't copy the file data, just the attributes"
       },
       {
-        "id": "--backup[",
+        "id": "--backup",
         "forms": [
-          "--backup["
+          "--backup"
         ],
         "type": "string",
         "help": " make a backup of each existing destination file"
@@ -773,9 +750,9 @@
         "help": " same as --preserve=mode,ownership,timestamps"
       },
       {
-        "id": "--preserve[",
+        "id": "--preserve",
         "forms": [
-          "--preserve["
+          "--preserve"
         ],
         "type": "string",
         "help": " preserve the specified attributes (default:\nmode,ownership,timestamps), if possible\nadditional attributes: context, links, xattr,\nall"
@@ -807,9 +784,9 @@
         "help": "copy directories recursively"
       },
       {
-        "id": "--reflink[",
+        "id": "--reflink",
         "forms": [
-          "--reflink["
+          "--reflink"
         ],
         "type": "string",
         "help": " control clone/CoW copies. See below"
@@ -910,9 +887,9 @@
         "help": " set SELinux security context of destination\nfile to default type"
       },
       {
-        "id": "--context[",
+        "id": "--context",
         "forms": [
-          "--context["
+          "--context"
         ],
         "type": "string",
         "help": "like -Z, or if CTX is specified then set the\nSELinux or SMACK security context to CTX"
@@ -931,15 +908,15 @@
           "--version"
         ],
         "type": "flag",
-        "help": "output version information and exit\nBy default, sparse SOURCE files are detected by a crude heuristic and the\ncorresponding DEST file is made sparse as well.  That is the behavior\nselected by --sparse=auto.  Specify --sparse=always to create a sparse DEST\nfile whenever the SOURCE file contains a long enough sequence of zero bytes.\nUse --sparse=never to inhibit creation of sparse files.\nWhen --reflink[=always] is specified, perform a lightweight copy, where the\ndata blocks are copied only when modified.  If this is not possible the copy\nfails, or if --reflink=auto is specified, fall back to a standard copy.\nUse --reflink=never to ensure a standard copy is performed.\nThe backup suffix is '~', unless set with --suffix or SIMPLE_BACKUP_SUFFIX.\nThe version control method may be selected via the --backup option or through\nthe VERSION_CONTROL environment variable.  Here are the values:\nnone, off       never make backups (even if --backup is given)\nnumbered, t     make numbered backups\nexisting, nil   numbered if numbered backups exist, simple otherwise\nsimple, never   always make simple backups\nAs a special case, cp makes a backup of SOURCE when the force and backup\noptions are given and SOURCE and DEST are the same name for an existing,\nregular file.\nGNU coreutils online help: <https://www.gnu.org/software/coreutils/>\nFull documentation at: <https://www.gnu.org/software/coreutils/cp>\nor available locally via: info '(coreutils) cp invocation'"
+        "help": "output version information and exit\nBy default, sparse SOURCE files are detected by a crude heuristic and the\ncorresponding DEST file is made sparse as well.  That is the behavior\nselected by --sparse=auto.  Specify --sparse=always to create a sparse DEST\nfile whenever the SOURCE file contains a long enough sequence of zero bytes.\nUse --sparse=never to inhibit creation of sparse files.\nWhen --reflink[=always] is specified, perform a lightweight copy, where the\ndata blocks are copied only when modified.  If this is not possible the copy\nfails, or if --reflink=auto is specified, fall back to a standard copy.\nUse --reflink=never to ensure a standard copy is performed.\nThe backup suffix is '~', unless set with --suffix or SIMPLE_BACKUP_SUFFIX.\nThe version control method may be selected via the --backup option or through\nthe VERSION_CONTROL environment variable.  Here are the values:\nnone, off       never make backups (even if --backup is given)\nnumbered, t     make numbered backups\nexisting, nil   numbered if numbered backups exist, simple otherwise\nsimple, never   always make simple backups\nAs a special case, cp makes a backup of SOURCE when the force and backup\noptions are given and SOURCE and DEST are the same name for an existing,\nregular file.\nGNU coreutils online help: <https://www.gnu.org/software/coreutils/>\nFull documentation <https://www.gnu.org/software/coreutils/cp>\nor available locally via: info '(coreutils) cp invocation'"
       }
     ]
   },
-  {
+  "cd": {
     "name": "cd",
     "args": []
   },
-  {
+  "rm": {
     "name": "rm",
     "args": [
       {
@@ -968,9 +945,9 @@
         "help": "prompt once before removing more than three files, or\nwhen removing recursively; less intrusive than -i,\nwhile still giving protection against most mistakes"
       },
       {
-        "id": "--interactive[",
+        "id": "--interactive",
         "forms": [
-          "--interactive["
+          "--interactive"
         ],
         "type": "string",
         "help": "prompt according to WHEN: never, once (-I), or\nalways (-i); without WHEN, prompt always"
@@ -992,9 +969,9 @@
         "help": "do not treat '/' specially"
       },
       {
-        "id": "--preserve-root[",
+        "id": "--preserve-root",
         "forms": [
-          "--preserve-root["
+          "--preserve-root"
         ],
         "type": "string",
         "help": "do not remove '/' (default);\nwith 'all', reject any command line argument\non a separate device from its parent"
@@ -1041,8 +1018,8 @@
           "--version"
         ],
         "type": "flag",
-        "help": "output version information and exit\nBy default, rm does not remove directories.  Use the --recursive (-r or -R)\noption to remove each listed directory, too, along with all of its contents.\nTo remove a file whose name starts with a '-', for example '-foo',\nuse one of these commands:\nrm -- -foo\nrm ./-foo\nNote that if you use rm to remove a file, it might be possible to recover\nsome of its contents, given sufficient expertise and/or time.  For greater\nassurance that the contents are truly unrecoverable, consider using shred.\nGNU coreutils online help: <https://www.gnu.org/software/coreutils/>\nFull documentation at: <https://www.gnu.org/software/coreutils/rm>\nor available locally via: info '(coreutils) rm invocation'"
+        "help": "output version information and exit\nBy default, rm does not remove directories.  Use the --recursive (-r or -R)\noption to remove each listed directory, too, along with all of its contents.\nTo remove a file whose name starts with a '-', for example '-foo',\nuse one of these commands:\nrm -- -foo\nrm ./-foo\nNote that if you use rm to remove a file, it might be possible to recover\nsome of its contents, given sufficient expertise and/or time.  For greater\nassurance that the contents are truly unrecoverable, consider using shred.\nGNU coreutils online help: <https://www.gnu.org/software/coreutils/>\nFull documentation <https://www.gnu.org/software/coreutils/rm>\nor available locally via: info '(coreutils) rm invocation'"
       }
     ]
   }
-]
+}
